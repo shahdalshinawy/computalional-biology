@@ -1,0 +1,11 @@
+bsa=FASTAEntry()
+bsa.sequence="MKWVTFISLLLLFSSAYSRGVFRRDTHKSEIAHRFKDLGE"
+bsa.description="BSA Bovine Albumin (partial sequence)"
+bsa.identifier="BSA"
+alb=FASTAEntry()
+alb.sequence="MKWVTFISLLLLFSSAYSRGVFRRDTHKSEIAHRFKDLGE"
+alb.description="BSA Bovine Albumin (partial sequence )"
+alb.identifier="ALB"
+entries=[bsa,alb]
+f=FASTAfile()
+f.store("example.fasta,entries")
