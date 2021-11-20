@@ -1,0 +1,32 @@
+from pyopenms import *
+seq = AASequence.fromString("VAKA")
+prefix=seq.getPrefix(2)
+suffix=seq.getSuffix(2)
+concat=seq+seq
+print("sequence is ",seq)
+print("prefix is ",prefix)
+print("suffix is ",suffix)
+print("concatenated is ",concat)
+mfull=seq.getMonoWeight()
+print("the full sequence VAKA monoweight is ",mfull)
+mprecursor=seq.getMonoWeight(Residue.ResidueType.Full,2)
+mz=seq.getMonoWeight(Residue.ResidueType.Full,2)/2.0
+mz=seq.getMZ(2)
+print("Monoisotopic mass of peptide [M] is", mfull)
+print("Monoisotopic mass of peptide precursor [M+2H]2+ is", mprecursor)
+print("Monoisotopic m/z of [M+2H]2+ is", mz)
+////////////////////////////////////
+seq=AASequence.fromString("VAKA")
+print("The peptide", str(seq),"Consists of the following amino acids and their mass")
+for aa in seq:
+   print(aa.getName(), " : ",aa.getMonoWeight()
+/////////////////////////////////////
+seq = AASequence.fromString("VAKA")
+
+print("The peptide", str(seq), "consists of the following amino acids:")
+for aa in seq:
+    print(aa.getName(), ":", aa.getMonoWeight())
+    if(aa.getMonoWeight(0)+aa.getMonoWeight(1)+aa.getMonoWeight(2)+aa.getMonoWeight(3)==seq.getMonoWeight()):
+       print("yess")
+    else:
+        print("not equal")
