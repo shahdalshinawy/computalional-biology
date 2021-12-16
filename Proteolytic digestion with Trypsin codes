@@ -1,0 +1,41 @@
+from pyopenms import*
+from urlib.request import urlretrieve
+gh="https://raw.githubusercontent.com/OpenMS/pyopenms-extra/master"
+urlretrieve(gh+"/src/data/P02769.fasta","bsa.fasta")
+dig=ProteaseDigestion()
+dig.getEnzymeName()
+bsa="".join([l.strip() for l in open("bsa.fasta").readlines()[1:]])
+bsa=AASequence.fromString(bsa)
+result=[]
+dig.digest(bsa,result)
+print(result[4].toString())
+len(result)
+-----------------------------------------------
+dig.digest(bsa,result,7,40)
+for s in result:
+    print(s.toString())
+----------------------------------------------
+dig.setMissedCleavages(2)
+dig.digest(bsa,result,7,40)
+for s in result: 
+  print(s.toString())
+---------------Proteolytic Disgestion with lys-C-------------
+name=[]
+ProteaseDB().getAllNames(names)
+len(name)
+e=ProteaseDB().getEnzyme("Lys-C")
+e.getRegDescription()
+e.getRegEx()
+------------------------------------------------------------
+from urllib.request import urlretrieve
+gh="https://raw.githubusercontent.com/OpenMS/pyopenms-extra/master"
+urlretrieve(gh+""/src/data/P02769.fasta", "bsa.fasta")
+dig=ProteaseDigestion()
+dig.setEnzyme("Lys-C")
+bsa="".join([l.strip() for l in open("bsa.fasta").readlines()[1:]])
+bsa=AASequence.fromString(bsa)
+result=[]
+dig.digest(bsa,result)
+print(result[4].toString())
+len(result)
+--------------------------------------------------
