@@ -1,0 +1,17 @@
+prot_id=ProteinIdentification()
+pepti_id=PeptideIdentification()
+prot_id.setIdentifier("IdentificationRun1")
+pepti_id.setIdentifier("IdentificationRun1")
+print("Protein identifier" , prot_id.getIdentifier())
+print("peptide identifier", pepti_id.getIdentifier())
+---------------------------------------------------------------------
+from pyopenms import*
+prot_id=ProteinIdentification()
+prot_id.setIdentifier("IdentificationRun1")
+prot_hit=ProteinHit()
+prot_hit.setAccession("sp|MyAccession")
+prot_hit.setSequence("PEPTIDERDLQMTQSPSSLSVSVGDRPEPTIDE")
+prot_hit.setScore(1.0)
+prot_hit.setMetaValue("target_decoy",b"target")
+prot_id.setHits([protein_hit])
+--------------------------------------------------------------------
