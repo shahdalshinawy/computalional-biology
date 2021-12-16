@@ -1,0 +1,29 @@
+------------------Y-ion spectrum------------------
+from pyopenms import *
+tsg=TheoreticalSpectrumGenerator()
+spec1=MSSpectrum()
+peptide=AASequence.fromString("DFPIANGER")
+p=Param()
+p.setValue("add_b_ions","false")
+p.setValue("add_metainfo","true")
+tsg.setParameters(p)
+tsg.getSpectrum(spec1,peptide,1,1)
+print("spectrum 1 of ",peptide,"has",spec1.size(),"peaks")
+for ion , peak in zip(spec1.getStringDataArrays()[0],spec1):
+    print(ion.decode(),"is generated at m/z",peak.getMZ())
+--------------Full fragment ion spectrum------------
+spec2=MSSpectrum()
+p.setValue("add_b_ions","true")
+p.setValue("add_a_ions","true")
+p.setValue("add_losses","true")
+p.setValue("add_metainfo","true")
+tsg.setParameters(p)
+tsg.getSpectrum(spec2,peptide,1,2)
+print("spectrum 2 of",peptide,"has"spec2size(),"peaks")
+for ion , peak in zip(spec2.getStringDataArrays()[0],spec2):
+     print(ion.decode(),"is generated at m/z",peak.getMZ())
+exp=MSExperiment()
+exp.addSpectrum(spec1)
+exp.addSpectrum(spec2)
+MzMLFile().store("DFPIANGER.mzML",exp)
+---------------------------------------------------
