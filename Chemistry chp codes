@@ -1,0 +1,79 @@
+-----------------------====Constants====------------------------
+import pyopenms
+help(pyopenms.Constants)
+print("Avogadro's Number =",pyopenms.Constants.AVOGADRO)
+----------------------====Elements====--------------------------
+from pyopenms import*
+edb=ElementDB()
+edb.hasElement("O")
+edb.hasElement("S")
+oxg=edb.getElement("O")
+print(oxg.getName())
+print(oxg.getSymbol())
+print(oxg.getMonoWeight())
+print(oxg.getAverageWeight())
+sulf=edb.getElement("S")
+print(sulf.getName())
+print(sulf.getSymbol())
+print(sulf.getMonoWeight())
+print(sulf.getAverageWeight())
+isotopes=sul.getIsotopeDistribution()
+print("One mole of O2 weighs",2*oxg.getAverageWeight(),"gm")
+print("one mole of 16O2 weights",2*oxg.getMonoWeight(),"gm")
+----------------------=====Isotopes=====-------------------------
+edb=ElementDB()
+oxg_isoDist={"mass":[],"abund":[]}
+sulf_isoDist={"mass":[],"abund":[]}
+oxg=edb.getElement("O")
+isotopes=oxg.getIsotopeDistribution()
+for iso in isotopes.getContainer():
+    print("sulfur isotope", iso.getMZ(),"has abundance",iso.getIntensity()*100,"%")
+    sulf_isoDist["mass"].append(is.getMZ())
+    sulf_isoDist["abundance"].append((iso.getIntensity()*100))
+---------------------======Mass Defect=====-----------------------
+ edb=ElementDB()
+ isotopes=edb.getElement("C").getIsotopeDistribution().getContainer()
+ carb_Iso_Diff=isotopes[1].getMZ()-isotopes[0].getMZ()
+ isotopes=edb.getElement("N").getIsotopeDistribution().getContainer()
+ nitro_iso_diff=isotopes[1].getMZ()-isotopes[0].getMZ()
+ print("MAss Difference between 12C and 13C is ",carb_Iso_Diff)
+ print("MassDifference between 14N and 15N is ",nitro_iso-diff)
+ print("Relative deviation is ", 100*(carbo_Iso_Diff-nitro_iso_diff)/carbo_Iso_Diff,"%")
+ -----------------------------------------------------------------------
+ from pyopenms.Constants import *
+ helium=ElementDB().getElement("He")
+ isotopes=helium.getIsotopeDistribution()
+ massSum=2*PROTON_MASS_U+2*ELECTRON_MASS_U+2*NEUTRON_MASS_U
+ helium4=isotpes.getContainer()[1].getMZ()
+ print("sum of masses of 2 protons,neutrons and electrons:",massSum)
+ print("Mass of He4:",helium4)
+ print("difference between the two masses:",100*(massSum-helium4)*massSum,"%")
+ ---------------------------=====Molecular Formula====----------------------------------
+ metha=EmpiricalFormula("CH3OH")
+ water=EmpiricalFormula("H2O")
+ etha=EmpiricalFormula("CH2")+metha
+ print("Ethanol chemical formula is ",etha.toString())
+ print("ethanol composition",etha.getElemnetalComposition())
+ print("ethanol has",etha.getElementalComposition()[b"H"],"hydrogen atoms")
+ ------------------------===========Isotopic Distribution============------------------
+ metha=EmpricialFormula("CH3OH")
+ etha=EmpiricalFormula("CH2")+metha
+ methaIsoDist={"mass":[],"abundance":[]}
+ ethaIsoDist={"mass":[],"abundance":[]}
+ print("coarse ISotope dist:")
+ isotopes=etha.getIsotopeDistribution(CoarseIsotioePatternGenerator(4))
+ probSum=sum([iso.getIntensity() for iso in isotopes.getContainer()])
+ print("Thiscover ",probSum,"probabilty")
+ for iso in isotopes.getContainer():
+     print("isotope",iso.getMZ(),"has abundance",iso.getIntensity()*100,"%")
+     methaIsoDist["mass"].append(iso.getMZ())
+     methaIsoDist["abundance"].append((iso.getIntensity()*100))
+     
+print("fine isotope dist")
+isotopes=etha.getIsotopeDistribution(FineIsotopePatternGeneratior(ie-3))
+probSum=sum([iso.getIntensity() for iso in isotopes.getContainer()])
+for iso in isotopes.getContainer():
+     print("isotope",iso.getMZ(),"has abundance",iso.getIntensity()*100,"%")
+     ethaIsoDist["mass"].append(iso.getMZ())
+     ethaIsoDist["abundance"].append((iso.getIntensity()*100))
+---------------------------------------------------------------------------------------
