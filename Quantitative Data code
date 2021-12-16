@@ -1,0 +1,16 @@
+from pyopenms import*
+feature=Feature()
+feature.setMZ(500.9)
+feature.setCharge(2)
+feature.setRT(1500.1)
+feature.setIntensity(30500)
+feature.setOverallQuality(10)
+-------------------------------
+fm=FeatureMap()
+fm.push_back(feature)
+feature.setRT(1600.5)
+feature.setCharge(2)
+feature.setMZ(600.0)
+feature.setIntensity(80500.0)
+fm.push_back(feature)
+FeatureXMLFile().store("test.featureXML",fm)
