@@ -1,0 +1,46 @@
+-----------------AminoAcid Sequence------------------
+from pyopenms import*
+seq=AASequence.fromString("DFPIANGER")
+prefix=seq.getPrefix(4)
+suffix=seq.getSuffix(5)
+cocnat=seq+seq
+print("sequence : ",seq)
+print("prefix is " ,prefix)
+print("suffix i ",suffix)
+print("concated",concat)
+mfull=seq.getMonoWeight()
+mprecursor=seq.getMonoWeight(Residue.ResidueType.Full,2)
+mz=seq.getMonoWeight(Residue.ResidueType.Full,2)
+mz=seq.getMZ(2)
+print()
+print("Monoweight mass of peptide [M] is",mfull)
+print("Monoweight mass of peptide precursor [M+2H]2+ is",mprecursor)
+print("Monoweight m/z of [M+2H]2+ is",mz)
+---------------------------------------------------------
+seq=AASequence.fromString("DFIANGER")
+print("the peptide",str(seq),"consists of the following amino acid")
+for aa in seq:
+    print(aa.getName()," : ",aa.getMonoWeight())
+---------------------Molecular Formula------------------------
+seq=AASequence.fromString("DFPIANGER")
+seqform=seq.getFormula()
+print("peptide",seq,"has molecular formula",seqform)
+-----------------proteins and fasta files----------------------------
+bsa=FASTAEntry()
+bsa.sequence="MKWVTFISLLLLFSSAYSRGVFRRDTHKSEIAHRFKDLGE"
+bsa.description="BSA Bovine albumine(partial sequence)"
+bsa.identifier="BSA"
+alb=FASTAEntry()
+alb.sequence="MKWVTFISLLLLFSSAYSRGVFRRDTHKSEIAHRFKDLGE"
+alb.description="ALB human albumin (Partial sequence)"
+alb.identifier="ALB"
+entries=[bsa,alb]
+f=FASTAFile()
+f.store("Example.fasta",entries)
+entries=[]
+f=FASTAFile()
+f.load("Example.fasta",entries)
+print(len(entries))
+for e in entries:
+    print(e.identifier,e.sequence)
+---------------------------------------------------------------
